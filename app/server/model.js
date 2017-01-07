@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
   name: String,
-  publicId: String
+  publicId: String,
+  monthlyWattage: Number
 })
 
 module.exports = mongoose.model('User', userSchema);

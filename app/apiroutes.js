@@ -26,13 +26,48 @@ exports = module.exports = function (express, app){
       console.log(req.body);
       var user = new User();
       user.name = req.body.name;
-      user.publicId = '0';
+      user.publicId = req.body.publicId;
+      user.monthlyWattage = req.body.wattage;
       user.save(function(err) {
         if (err)
           res.send(err);
         res.json({message: 'User Registered!'})
       });
+    })
+
+    //get all user accounts
+    .get(function(req, res){
+      User.find(function(err, users){
+        if (err)
+          res.send(err)
+        res.json(users);
+      })
+    })
+  router.route('/users/:publicId')
+    //get the user with the id(accessed at GET http://localhost:8080/api/:publicId)
+    .get(function(req, res){
+      console.log(req.params.publicId)
+      User.find({publicId:req.params.publicId}, function(err, user){
+        if(err)
+          res.send(err);
+        res.json(user);
+      })
+    })
+    //update the user with this id(accessed at PUT http://localhost:8080/api/user/:publicId)
+    .put(function(req,res) {
+      User.find({publicId:req.params.publicId}, function(err, user){
+        if (err)
+          res.send(err);
+        user.monthlyWattage = req.body.wattage;
+        user.save(function(err){
+          if(err)
+            res.send(err);
+
+          res.json({message: 'User updated!'});
+        });
+      });
     });
+
 
 
   //Register our routes
