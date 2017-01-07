@@ -36,10 +36,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akscanb/smrtprpty.git"
+    "url": "git+https://github.com/akscanb/DubaiHackathon.git"
   },
   "bugs": {
-    "url": "https://github.com/akscanb/smrtprpty/issues"
+    "url": "https://github.com/akscanb/DubaiHackathon/issues"
   },
-  "homepage": "https://github.com/akscanb/smrtprpty#readme"
+  "homepage": "https://github.com/akscanb/DubaiHackathon#readme"
 }
