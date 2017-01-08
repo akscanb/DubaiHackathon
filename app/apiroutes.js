@@ -52,6 +52,7 @@ exports = module.exports = function (express, app){
       User.find({publicId:req.params.publicId}, function(err, user){
         if(err)
           res.send(err);
+        console.log(user[0]);
         res.json(user[0]);
       })
     })
