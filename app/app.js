@@ -26,12 +26,13 @@ server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-require('./server/main.js')(server);
 
-conn.on('error', console.error.bind(console, 'connection error:'));
-conn.once('open', function() {
-  // Wait for the database connection to establish, then start the app.
-  require('./apiroutes')(express, app);
-  //require('./server/database.js')(server);
-  console.log('apiserver connected!')
-});
+// conn.on('error', console.error.bind(console, 'connection error:'));
+// conn.once('open', function() {
+//   // Wait for the database connection to establish, then start the app.
+//   require('./apiroutes')(express, app);
+//
+//   console.log('apiserver connected!')
+// });
+require('./server/main.js')(server);
+require('./server/database.js')(server);

@@ -423,7 +423,7 @@
 	    }
 	};
 
-	var contractAddress = '0x9eb06FbCD5f1379142d5A3e51413Ba9b01d211C0';
+	var contractAddress = '0x8b57d6042243e3eCB8016fc8DF5d7339aaB70c02';
 	var MyContract = web3.eth.contract(abiArray);
 	var myContractInstance = MyContract.at(contractAddress);
 
