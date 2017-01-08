@@ -4,9 +4,10 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
   name: String,
   publicId: String,
-  monthlyWattage: Number,
+  energyCredit: Number,
   subsidy: Number,
-  citizenship: Boolean
+  citizenship: Boolean,
+  montlyUsage: Number
 })
 
 module.exports = mongoose.model('User', userSchema);
