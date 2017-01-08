@@ -2,7 +2,7 @@ exports = module.exports = function (express, app){
   //Base Setup for use in the database
 
   var bodyParser = require('body-parser');
-  var User = require('./server/model');
+  var User = require('./models/users.js');
 
   //Routes Setup
 
@@ -28,6 +28,8 @@ exports = module.exports = function (express, app){
       user.name = req.body.name;
       user.publicId = req.body.publicId;
       user.monthlyWattage = req.body.wattage;
+      user.subsidy = 0;
+      user.citizenship = req.body.citizenship;
       user.save(function(err) {
         if (err)
           res.send(err);
@@ -50,7 +52,7 @@ exports = module.exports = function (express, app){
       User.find({publicId:req.params.publicId}, function(err, user){
         if(err)
           res.send(err);
-        res.json(user);
+        res.json(user[0]);
       })
     })
     //update the user with this id(accessed at PUT http://localhost:8080/api/user/:publicId)
@@ -58,7 +60,7 @@ exports = module.exports = function (express, app){
       User.find({publicId:req.params.publicId}, function(err, user){
         if (err)
           res.send(err);
-        user.monthlyWattage = req.body.wattage;
+        user.subsidy = req.body.subsidy
         user.save(function(err){
           if(err)
             res.send(err);
