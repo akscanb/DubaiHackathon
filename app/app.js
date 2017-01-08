@@ -31,6 +31,6 @@ conn.on('error', console.error.bind(console, 'connection error:'));
 conn.once('open', function() {
   // Wait for the database connection to establish, then start the app.
   require('./apiroutes')(express, app);
-  require('./server/database.js')(server);
+  //require('./server/database.js')(server);
   console.log('apiserver connected!')
 });
