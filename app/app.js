@@ -27,6 +27,7 @@ server.listen(app.get('port'), function(){
 });
 
 require('./server/main.js')(server);
+
 conn.on('error', console.error.bind(console, 'connection error:'));
 conn.once('open', function() {
   // Wait for the database connection to establish, then start the app.

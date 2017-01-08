@@ -7,7 +7,7 @@ var userSchema = new Schema({
   energyCredit: Number,
   subsidy: Number,
   citizenship: Boolean,
-  montlyUsage: Number
+  monthlyUsage: Number
 })
 
 module.exports = mongoose.model('User', userSchema);

@@ -23,18 +23,25 @@ exports = module.exports = function (express, app){
 
   router.route('/users')
     .post(function(req,res){
-      console.log(req.body);
-      var user = new User();
-      user.name = req.body.name;
-      user.publicId = req.body.publicId;
-      user.monthlyWattage = req.body.wattage;
-      user.subsidy = 0;
-      user.citizenship = req.body.citizenship;
-      user.save(function(err) {
-        if (err)
-          res.send(err);
-        res.json({message: 'User Registered!'})
-      });
+      User.count({publicId:req.body.publicId.toLowerCase()}, function(err,count){
+        if(count>0){
+          res.json({message:'User Already Exists!'});
+        }else{
+          console.log(req.body);
+          var user = new User();
+          user.name = req.body.name;
+          user.publicId = req.body.publicId.toLowerCase();
+          user.monthlyWattage = req.body.wattage;
+          user.subsidy = req.body.subsidy;
+          user.citizenship = req.body.citizenship;
+          user.save(function(err) {
+            if (err)
+              res.send(err);
+            res.json({message: 'User Registered!'})
+          });
+        }
+      })
+
     })
 
     //get all user accounts
@@ -61,8 +68,11 @@ exports = module.exports = function (express, app){
       User.find({publicId:req.params.publicId}, function(err, user){
         if (err)
           res.send(err);
-        user.subsidy = req.body.subsidy
-        user.save(function(err){
+        user[0].subsidy = req.body.subsidy
+        user[0].monthlyWattage = req.body.wattage;
+        user[0].subsidy = req.body.subsidy;
+        user[0].citizenship = req.body.citizenship;
+        user[0].save(function(err){
           if(err)
             res.send(err);
 
