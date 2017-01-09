@@ -262,7 +262,7 @@
 	};
 
 	window.updateContract = function () {
-	    socket.emit('update contract', {
+	    socket.emit('updateContract', {
 	        'update': 'contract'
 
 	    });
