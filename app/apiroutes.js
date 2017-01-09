@@ -69,7 +69,7 @@ exports = module.exports = function (express, app){
         if (err)
           res.send(err);
         user[0].subsidy = req.body.subsidy
-        user[0].monthlyWattage = req.body.wattage;
+        user[0].monthlyUsage = req.body.wattage;
         user[0].subsidy = req.body.subsidy;
         user[0].citizenship = req.body.citizenship;
         user[0].save(function(err){
